@@ -48,7 +48,22 @@ document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>$(b.dataset.c
 $("resetBtn").onclick=()=>{if(confirm("Reset local data? Cloud data is not deleted.")){data=structuredClone(DEFAULT);changed();}};
 $("exportJsonBtn").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="phone-bill-manager.json";a.click();};
 $("importJsonBtn").onclick=()=>$("jsonFileInput").click();
-$("jsonFileInput").onchange=async e=>{try{data=JSON.parse(await e.target.files[0].text());saveLocal();render();scheduleSave();toast("Imported");}catch(x){alert("Invalid JSON file");}};
+$("jsonFileInput").onchange=async e=>{
+  try{
+    const file=e.target.files?.[0];
+    if(!file)return;
+    const imported=JSON.parse(await file.text());
+    if(!imported||typeof imported!=="object")throw new Error("JSON root must be an object");
+    if(!Array.isArray(imported.people)||!Array.isArray(imported.lines)||!Array.isArray(imported.transactions))throw new Error("JSON must contain people, lines, and transactions arrays");
+    imported.version=2;
+    imported.people.forEach(p=>{if(!p.id)p.id=uid();if(typeof p.name!=="string")p.name=String(p.name??"");});
+    imported.lines.forEach(l=>{if(!l.id)l.id=uid();if(!l.monthlyAmounts&&l.amounts)l.monthlyAmounts=l.amounts;if(!l.monthlyAmounts)l.monthlyAmounts={};if(l.personId===undefined)l.personId=null;if(l.note===undefined)l.note="";l.bill=Number(l.bill||0);});
+    imported.transactions.forEach(t=>{if(!t.id)t.id=uid();if(t.personId===undefined)t.personId=null;if(t.lineId===undefined)t.lineId=null;t.amount=Number(t.amount||0);});
+    data={version:2,people:imported.people,lines:imported.lines,transactions:imported.transactions};
+    saveLocal();render();scheduleSave();toast("Imported successfully");
+  }catch(x){console.error(x);alert("Could not import JSON: "+(x.message||"Invalid JSON file"));}
+  e.target.value="";
+};
 $("openDbBtn").onclick=()=>alert("On iPhone, use Import JSON / Export JSON. On desktop, cloud sync is the recommended database.");
 $("saveDbBtn").onclick=()=>{saveLocal();scheduleSave();toast(user?"Saved to cloud":"Saved locally");};
 $("accountBtn").onclick=()=>{$("authMessage").textContent=user?user.email:"";$("signOutBtn").style.display=user?"block":"none";$("authDialog").showModal();};
