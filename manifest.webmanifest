@@ -7,7 +7,7 @@
   "background_color":"#f5f7fb",
   "theme_color":"#111827",
   "icons":[
-    {"src":"./pbm-icon.png?v=5","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"./pbm-icon.png?v=5","sizes":"180x180","type":"image/png","purpose":"any"}
+    {"src":"./pbm-icon.png?v=6","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"./pbm-icon.png?v=6","sizes":"192x192","type":"image/png","purpose":"any"}
   ]
 }
