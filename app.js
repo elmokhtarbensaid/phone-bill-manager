@@ -98,10 +98,12 @@ function render(){
       </div>
     </div>`).join(""):'<div class="empty">No people yet.<br>Add someone to assign phone lines.</div>';
 
-  const ms=months();
-  $("linesList").innerHTML=data.lines.length?`<table class="lines-table"><thead><tr><th>Phone</th><th>Person</th>${ms.map(m=>`<th>${esc(m)}</th>`).join("")}<th>Total Due</th><th>Note</th><th></th></tr></thead><tbody>${data.lines.map(l=>{
+  $("linesList").innerHTML=data.lines.length?`<table class="lines-table"><thead><tr><th>Phone</th><th>Person</th><th>Total Billed</th><th>Total Paid</th><th>Total Due</th><th>Note</th><th></th></tr></thead><tbody>${data.lines.map(l=>{
     const bd=l.personId?buildPersonAllocations(l.personId).filter(x=>x.lineId===l.id):lineBreakdown(l.id);
-    return `<tr><td><strong>${esc(l.number)}</strong></td><td>${esc(data.people.find(p=>p.id===l.personId)?.name||"Unassigned")}</td>${ms.map(m=>{const x=bd.find(v=>v.month===m);return `<td><strong>${money(x?.billed||0)}</strong><br><span class="${(x?.balance||0)?'balance-due':'balance-paid'}">${(x?.balance||0)?'Due ':''}${money(x?.balance||0)}</span></td>`}).join("")}<td class="${lineDue(l.id)?'balance-due':'balance-paid'}"><strong>${money(lineDue(l.id))}</strong></td><td>${esc(l.note||"—")}</td><td><div class="actions"><button class="secondary" onclick="editLine('${l.id}')">Edit</button> <button class="danger" onclick="delLine('${l.id}')">Delete</button></div></td></tr>`;
+    const billed=bd.reduce((s,x)=>s+x.billed,0);
+    const paid=bd.reduce((s,x)=>s+x.paid,0);
+    const due=Math.max(0,billed-paid);
+    return `<tr><td><strong>${esc(l.number)}</strong></td><td>${esc(data.people.find(p=>p.id===l.personId)?.name||"Unassigned")}</td><td><strong>${money(billed)}</strong></td><td><strong>${money(paid)}</strong></td><td class="${due?'balance-due':'balance-paid'}"><strong>${money(due)}</strong></td><td>${esc(l.note||"—")}</td><td><div class="actions"><button class="secondary" onclick="editLine('${l.id}')">Edit</button> <button class="danger" onclick="delLine('${l.id}')">Delete</button></div></td></tr>`;
   }).join("")}</tbody></table>`:'<div class="empty">No phone lines yet.</div>';
 
   $("balancesList").innerHTML=data.people.length?data.people.map(p=>{
