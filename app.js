@@ -8,6 +8,7 @@ const $=id=>document.getElementById(id);
 const money=n=>"$"+Number(n||0).toFixed(2);
 const uid=()=>crypto.randomUUID();
 function saveLocal(){localStorage.setItem("phoneBillManagerDatabaseV1",JSON.stringify(data));}
+function toast(message){const el=document.createElement("div");el.textContent=message;el.style.cssText="position:fixed;right:20px;bottom:20px;background:#111;color:#fff;padding:12px 16px;border-radius:10px;z-index:9999;box-shadow:0 4px 18px rgba(0,0,0,.25);font:14px system-ui,sans-serif";document.body.appendChild(el);setTimeout(()=>el.remove(),2200);}
 function months(){const s=new Set(); data.lines.forEach(l=>Object.keys(l.monthlyAmounts||{}).forEach(m=>s.add(m))); data.transactions.forEach(t=>s.add((t.date||"").slice(0,7))); const now=new Date(); s.add(now.toISOString().slice(0,7)); return [...s].filter(Boolean).sort();}
 function amount(line,m){return Number(line.monthlyAmounts?.[m] ?? line.bill ?? 0);}
 function targetLines(target){return data.lines.filter(l=>l.personId===target || l.id===target);}
