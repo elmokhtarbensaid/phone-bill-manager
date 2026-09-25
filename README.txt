@@ -1,0 +1,1 @@
+Phone Bill Manager is hosted as a static GitHub Pages app and uses Supabase for cross-device sync. Run SUPABASE_SETUP.sql in the Supabase SQL Editor before signing in. Use the same account on PC and iPhone. JSON import/export is also available. On iPhone Safari, open the site and use Share > Add to Home Screen.
