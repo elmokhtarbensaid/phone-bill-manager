@@ -48,7 +48,6 @@ function buildPersonAllocations(personId){
     let rem=Math.max(0,Number(t.amount)||0);
     for(const bill of bills){
       if(rem<=0)break;
-      if(t.lineId&&t.lineId!==bill.lineId)continue;
       const open=Math.max(0,bill.billed-bill.paid);
       if(!open)continue;
       const use=Math.min(open,rem);
