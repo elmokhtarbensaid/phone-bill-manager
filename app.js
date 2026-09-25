@@ -43,7 +43,7 @@ function buildPersonAllocations(personId){
   const lines=lineForPerson(personId);
   const bills=[];
   months().forEach(m=>lines.forEach(l=>bills.push({lineId:l.id,month:m,billed:lineAmount(l,m),paid:0})));
-  const txs=data.transactions.filter(t=>t.personId===personId).slice().sort((a,b)=>String(a.date||"").localeCompare(String(b.date||""))||String(a.id).localeCompare(String(b.id)));
+  const txs=data.transactions.filter(t=>t.personId===personId || (t.lineId && lines.some(l=>l.id===t.lineId))).slice().sort((a,b)=>String(a.date||"").localeCompare(String(b.date||""))||String(a.id).localeCompare(String(b.id)));
   for(const t of txs){
     let rem=Math.max(0,Number(t.amount)||0);
     for(const bill of bills){
