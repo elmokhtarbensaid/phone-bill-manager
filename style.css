@@ -15,6 +15,13 @@
   .person-main{min-width:0}
   .person-main strong{display:block;overflow-wrap:anywhere}
   .actions{flex-wrap:wrap;margin-top:10px}
+  .lines-table td:last-child{padding-left:0}
+  .lines-table td:last-child::before{display:none}
+  .head>button{width:auto;flex:0 0 auto;white-space:nowrap}
+  #addTransactionBtn{font-size:14px;padding:9px 13px}
+  .tx{align-items:center;flex-wrap:nowrap}
+  .tx>span{display:flex;align-items:center;min-width:0}
+  .tx>b{display:flex;align-items:center;gap:8px;flex:0 0 auto}
   .lines-table{display:block;width:100%}
   .lines-table thead{display:none}
   .lines-table tbody,.lines-table tr,.lines-table td{display:block;width:100%}
