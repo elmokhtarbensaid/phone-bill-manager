@@ -68,8 +68,9 @@
   .balance-head{display:flex;flex-direction:column;gap:8px}
   .line-breakdown{overflow-wrap:anywhere;font-size:13px}
   .month-row{grid-template-columns:1fr 1fr;gap:6px}
-  .tx{gap:10px;align-items:flex-start;flex-wrap:wrap}
-  .tx>span{min-width:0;overflow-wrap:anywhere;flex:1}
+  .tx{gap:10px;align-items:center;flex-wrap:nowrap}
+  .tx>span{display:inline-flex;align-items:center;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+  .tx>b{display:flex;align-items:center;gap:8px;flex:0 0 auto}
   .month-editor{padding:9px}
   dialog{width:calc(100vw - 20px);max-width:none}
 }
