@@ -13,7 +13,7 @@
   .grid{gap:12px}
   .person-item{align-items:center}
   .person-main{min-width:0}
-  .person-main strong{display:block;overflow-wrap:anywhere}
+  .person-main strong{display:block;overflow-wrap:anywhere}.person-main small{display:block}
   .actions{flex-wrap:wrap;margin-top:10px}
   .lines-table td:last-child{padding-left:0}
   .lines-table td:last-child::before{display:none}
