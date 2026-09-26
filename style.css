@@ -15,7 +15,7 @@
   .person-main{flex:1;min-width:0}
   .person-main small{font-size:11px;white-space:nowrap}
   .person-item .actions{flex:0 0 auto;gap:4px;flex-wrap:nowrap}
-  .person-item .actions button{font-size:12px;padding:6px 8px}
+  .person-item .actions button{font-size:0;padding:7px;width:36px;height:36px;min-width:36px;display:inline-flex;align-items:center;justify-content:center}.person-item .actions button:first-child::before{content:'✎';font-size:15px}.person-item .actions button:last-child::before{content:'×';font-size:18px}
   .person-main{min-width:0}
   .person-main strong{display:block;overflow-wrap:anywhere}.person-main small{display:block;white-space:normal}
   .actions{flex-wrap:wrap;margin-top:10px}
