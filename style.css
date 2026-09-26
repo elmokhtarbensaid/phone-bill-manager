@@ -11,7 +11,11 @@
   .head{align-items:flex-start}
   .head h2{font-size:18px}
   .grid{gap:12px}
-  .person-item{align-items:center}
+  .person-item{align-items:center;gap:6px}
+  .person-main{flex:1;min-width:0}
+  .person-main small{font-size:11px;white-space:nowrap}
+  .person-item .actions{flex:0 0 auto;gap:4px;flex-wrap:nowrap}
+  .person-item .actions button{font-size:12px;padding:6px 8px}
   .person-main{min-width:0}
   .person-main strong{display:block;overflow-wrap:anywhere}.person-main small{display:block;white-space:normal}
   .actions{flex-wrap:wrap;margin-top:10px}
