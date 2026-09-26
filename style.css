@@ -23,9 +23,7 @@
   .lines-table td:last-child::before{display:none}
   .head>button{width:auto;flex:0 0 auto;white-space:nowrap}
   #addTransactionBtn{font-size:14px;padding:9px 13px}
-  .tx{align-items:center;flex-wrap:nowrap}
-  .tx>span{display:flex;align-items:center;min-width:0}
-  .tx>b{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+
   .lines-table{display:block;width:100%}
   .lines-table thead{display:none}
   .lines-table tbody,.lines-table tr,.lines-table td{display:block;width:100%}
@@ -68,9 +66,10 @@
   .balance-head{display:flex;flex-direction:column;gap:8px}
   .line-breakdown{overflow-wrap:anywhere;font-size:13px}
   .month-row{grid-template-columns:1fr 1fr;gap:6px}
-  .tx{gap:10px;align-items:center;flex-wrap:nowrap}
-  .tx>span{display:inline-flex;align-items:center;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
-  .tx>b{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .tx{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:nowrap}
+  .tx>span{display:inline-flex;align-items:center;min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tx>b{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;white-space:nowrap;margin:0}
+  .tx>b button{margin:0;vertical-align:middle}
   .month-editor{padding:9px}
   dialog{width:calc(100vw - 20px);max-width:none}
 }
